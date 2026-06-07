@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tajna Misja</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    padding:40px;
+    border-radius:20px;
+}
+
+h1{
+    margin-bottom:20px;
+}
+
+button{
+    padding:12px 24px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    margin-top:20px;
+    font-size:16px;
+}
+
+input{
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    width:100%;
+    margin-top:15px;
+}
+
+.hidden{
+    display:none;
+}
+
+.progress{
+    height:10px;
+    background:rgba(255,255,255,0.2);
+    border-radius:20px;
+    margin-bottom:25px;
+}
+
+.bar{
+    height:100%;
+    width:0%;
+    background:#00ff95;
+    border-radius:20px;
+    transition:0.5s;
+}
+
+.message{
+    font-size:1.2rem;
+    line-height:1.8;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
+<div id="step1">
+<h1>🔒 Tajna Misja</h1>
+<p>Otrzymałaś specjalne zadanie.</p>
+<p>Żeby odkryć wiadomość, musisz przejść 3 etapy.</p>
+<button onclick="nextStep(2,33)">Start</button>
+</div>
+
+<div id="step2" class="hidden">
+<h1>Etap 1</h1>
+<p>Kto zawsze ma rację?</p>
+<input id="answer1" placeholder="Wpisz odpowiedź">
+<button onclick="check1()">Dalej</button>
+</div>
+
+<div id="step3" class="hidden">
+<h1>Etap 2</h1>
+<p>Czy Dawid jest cool?</p>
+<p>A) Nie</p>
+<p>B) Tak</p>
+<button onclick="nextStep(4,66)">B</button>
+</div>
+
+<div id="step4" class="hidden">
+<h1>Etap 3</h1>
+<p>Ostatnie pytanie:</p>
+<p>Czy mr Natalka jest najmądrzejsza na świecie?</p>
+<button onclick="nextStep(5,100)">Tak</button>
+</div>
+
+<div id="step5" class="hidden">
+<h1>🎉 Misja ukończona 🎉</h1>
+
+<div class="message">
+<p>
+Jeśli dotarłaś aż tutaj, to znaczy, że jesteś całkiem wytrwała.
+</p>
+
+<br>
+
+<p>
+Chciałem tylko powiedzieć, że przepraszam
+</p>
+
+<br>
+
+<p>
+Nie twierdzę, że zawsze mam rację (choć czasami tak się zachowuje),
+ale zależy mi na tym, żebyśmy byli w dobrych relacjach.
+</p>
+
+<br>
+
+<p>
+❤️
+</p>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function nextStep(step, progress){
+    document.querySelectorAll('[id^="step"]').forEach(el=>{
+        el.classList.add('hidden');
+    });
+
+    document.getElementById('step'+step).classList.remove('hidden');
+    document.getElementById('bar').style.width = progress + '%';
+}
+
+function check1(){
+    const answer = document.getElementById('answer1').value.toLowerCase();
+
+    if(answer.includes('natalcia') ||
+       answer.includes('Natalcia') ||
+       answer.includes('natalcia')){
+        nextStep(3,66);
+    }else{
+        alert("Podpowiedź: odpowiedź brzmi 'Natalcia' ;)");
+    }
+}
+
+</script>
+
+</body>
+</html>
